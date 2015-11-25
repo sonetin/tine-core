@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="basic.css">
+
+<!-- 1. Reference the library assets and dependencies -->
+<link rel="stylesheet" href="../dist/tine.css">
+<link rel="stylesheet" href="../dist/tine.features.css">
+<link rel="stylesheet" href="../lib/prism.custom.theme.css">
+<script src="../lib/math.min.js"></script>
+<script src="../lib/prism.js"></script>
+<script src="../lib/franc.js" charset="utf-8"></script>
+<script src="../lib/nlp.min.js"></script>
+<script src="../lib/jshint.js"></script>
+<script src="../lib/abcjs_basic_2.2-min.js"></script>
+<script src="../src/tine.js"></script>
+<script src="../src/features.js"></script>
+
+<!-- 2. Use the `tine` class on the textarea -->
+<textarea class="tine" placeholder="Give me a name.
+
+And start writing."></textarea>
+
+<!-- 3. Profit! -->
+<script>new Tine(".tine", { tips: true })</script>

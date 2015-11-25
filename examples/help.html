@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="basic.css">
+
+<!-- 1. Reference the library assets and dependencies -->
+<link rel="stylesheet" href="../dist/tine.css">
+<link rel="stylesheet" href="../dist/tine.features.css">
+<link rel="stylesheet" href="../lib/prism.custom.theme.css">
+<script src="../lib/math.min.js"></script>
+<script src="../lib/prism.js"></script>
+<script src="../lib/franc.js" charset="utf-8"></script>
+<script src="../lib/nlp.min.js"></script>
+<script src="../lib/jshint.js"></script>
+<script src="../lib/abcjs_basic_2.2-min.js"></script>
+<script src="../src/tine.js"></script>
+<script src="../src/features.js"></script>
+
+<script>
+  // generate the cheat sheet
+  document.write('<textarea class="tine" id="text">');
+  var categories = ["general", "calculation", "text analysis", "web", "software programming",
+      "database programming", "low-level programming", "other syntaxes"/*, "tine bots"*/];
+  document.write(
+    "Cheat sheet\n\n" +
+    categories.map(function (category) {
+      return "# " + category.replace(/(^.)/,"$1".toUpperCase()) + "\n\n" +
+          Tine.features.filter(function (feature) {
+            return feature.category == category;
+          }).map(function (feature) {
+            if (feature.example) return feature.example;
+          }).filter(function (feature) {
+            return feature !== undefined;
+          }).join("\n\n")
+    }).join("\n\n---\n\n") +
+    "\n\n\n# Loaded features:\n# " +
+    Tine.features.map(function (feature) {
+      return feature.label;
+    }).join(", ")
+  );
+  document.write('</textarea>');
+
+  if(typeof require != 'undefined') var BW = require('remote').require('browser-window').getFocusedWindow();
+  document.addEventListener("DOMContentLoaded", function() {
+    new Tine("#text", {
+      autoload: false,
+      autosave: false,
+      tips: true
+    });
+  });
+</script>

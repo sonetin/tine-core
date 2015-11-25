@@ -1,0 +1,278 @@
+:root {
+  --main-font: Hack, Menlo, Consolas, monospace;
+  --main-size: 13px;
+  --main-padding: 10px;
+  --note-margin-side: 90px;
+  --note-padding-side: 50px;
+  --caret-color: #bcd;
+  --text-selection-color: #B2D7FD;
+  --text-color: #1F555E;
+}
+
+code[type='text'] {
+  /*font-family: "Courier New", Courier, monospace;*/
+  text-shadow: #eee .5px .5px .5px;
+  .word {
+    padding: 0 3px;
+    margin: 0 -3px;
+    border-radius: 4px;
+    border-bottom: transparent 2px solid;
+    &.noun {
+      background: rgba(239, 239, 255, .5);
+      text-shadow: #fff .5px 1px 0;
+    }
+    &.verb {
+      border-color: #fcc;
+    }
+  }
+  .tine-show-tips &:before {
+    content: attr(lang);
+  }
+}
+code[type='comment'] {
+  font-weight: bold;
+  color: #bcd;
+}
+code[type='link'] {
+  a {
+    color: #55f;
+    text-decoration: underline;
+    &:hover {
+      padding: 0 3px;
+      margin: 0 -3px;
+      border-radius: 4px;
+      border-bottom: transparent 2px solid;
+      background: #55f;
+      color: #fff;
+      transition: color 150ms ease;
+    }
+  }
+}
+code[type='todo'] {
+  .todo-checkbox {
+    pointer-events: initial;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    border-radius: 4px 0 0 4px;
+    left: 34px;
+    &::after {
+      content: "";
+      background-color: #eee;
+      width: inherit;
+      height: inherit;
+      display: inline-block;
+      text-align: center;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    &:checked::after {
+      content: "✔";
+    }
+  }
+  .notdone {
+    text-decoration: line-through;
+  }
+  .check {
+    font-weight: bold;
+  }
+}
+code[type='tasks'] {
+  .task {
+    height: 21px;
+    background: color(#ea0 a(10%));
+    position: absolute;
+    border: 1px solid #ea0;
+    border-right-width: 10px;
+    border-radius: 3px 0 0 3px;
+    left: 5px;
+    right: 5px;
+    opacity: .25;
+  }
+  .global-progress {
+    right: 100%;
+    bottom: 0;
+    padding-right: 5px;
+    width: initial;
+    font-size: 80%;
+    color: #ea0;
+  }
+}
+code[type='form'] {
+  .question {
+    font-weight: bold;
+  }
+  .mandatory {
+    color: red;
+  }
+  .form > label {
+    display: block;
+  }
+}
+code[type='calc'] {
+  color: #5c5;
+  &:after {
+    color: transparent;
+  }
+  .variable {
+    color: #46B8ED;
+  }
+  .result {
+    position: absolute;
+    right: 5px;
+    display: inline-block;
+    line-height: initial;
+    background: #efe;
+    padding: 2px 10px;
+    margin: 2px 0;
+    border-radius: 5px;
+    max-width: 30%;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 150ms ease;
+    &:hover {
+      max-width: 100%;
+      cursor: pointer;
+      background: #5c5;
+      color: #efe;
+    }
+  }
+}
+code[type='table'] {
+  color: #cc5;
+  table {
+    background: rgba(255,255,204,.5);
+    margin: 0 -5px;
+    padding: 0 5px;
+    border-spacing: 0;
+    border-radius: 2px;
+    box-shadow: #cc5 .25px .25px 2px;
+    th, td {
+      padding: 0;
+    }
+    th {
+      border-bottom: 1px solid #cc5;
+      line-height: 23px; /* -1 */
+    }
+  }
+}
+
+/* Handle tips */
+
+@define-mixin lang $language, $color, $textColor: rgba($color, .9) /* color($color lightness(-50%) a(50%)) */ /* $(color)c */ {
+  .tine-show-tips code[class$='language-$(language)'] {
+    border-color: $color;
+    &:before {
+      background: $color;
+      color: $textColor;
+    }
+  }
+}
+
+/* Hide tips for some formats */
+.tine-show-tips code {
+  &[class$='language-comment']:before,
+  &[class$='language-separator']:before {
+    opacity: 0;
+  }
+}
+
+@mixin lang comment, transparent, transparent;
+@mixin lang separator, transparent, transparent;
+@mixin lang text, #555, #fff;
+@mixin lang link, #55f, #fff;
+@mixin lang list, #fcc;
+@mixin lang form, #abf, #fff;
+@mixin lang table, #cc5, #fff;
+@mixin lang calc, #5c5, #fff;
+@mixin lang todo, #c55, #fff;
+@mixin lang tasks, #ea0, #fff;
+@mixin lang abc, #ccd;
+@mixin lang md, #333, #fff;
+@mixin lang markdown, #333, #fff;
+@mixin lang html, #fba;
+@mixin lang css, #cbd;
+@mixin lang javascript, #ffc;
+@mixin lang js, #ffc;
+@mixin lang es5, #ffc;
+@mixin lang es6, #ffc;
+@mixin lang es7, #ffc;
+@mixin lang typescript, #ffc;
+@mixin lang ruby, #e77, #fff;
+@mixin lang php, #bbd;
+@mixin lang bash, #cfa;
+@mixin lang c, #ccc;
+@mixin lang cpp, #fbc;
+@mixin lang python, #bde;
+@mixin lang py, #bde;
+@mixin lang java, #fc9;
+@mixin lang coffee, #9be;
+@mixin lang coffeescript, #9be;
+@mixin lang rust, #fdc;
+@mixin lang julia, #dbd;
+@mixin lang sql, #bde;
+@mixin lang objc, #cdf;
+@mixin lang objectivec, #cdf;
+@mixin lang latex, #690, #fff;
+
+.tine-show-tips code[type="abc"]:before {
+  content: "♫";
+}
+.tine-show-tips code[type="md"]:before,
+.tine-show-tips code[type="markdown"]:before {
+  content: "M⬇";
+}
+
+/* right-to-left languages */
+/*code[lang="arb"],
+code[lang="urd"],
+code[lang="skr"],
+code[lang="uig"],
+code[lang="pes"],
+code[lang="heb"],
+code[lang="ydd"] {
+  direction: rtl !important;
+  text-align: right !important;
+}*/
+.tine-code-valid,
+.tine-code-invalid {
+  display: inline-block;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  right: 5px;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+}
+.tine-code-invalid {
+  background: rgba(255,0,0,.5);
+  &::before {
+    content: "!";
+  }
+}
+.tine-code-valid {
+  background: rgba(0,255,0,.5);
+  &::before {
+    content: "✔";
+  }
+}
+.tine-bot-instructions {
+  position: absolute;
+  color: #ccc;
+  &::before {
+    content: "# ";
+  }
+}
+
+hr { /* separator */
+  height: 2px;
+  background: #eee;
+  border: 0;
+  margin: 11px 0;
+}

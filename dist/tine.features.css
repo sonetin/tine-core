@@ -1,0 +1,475 @@
+code[type='text'] {
+  /*font-family: "Courier New", Courier, monospace;*/
+  text-shadow: #eee .5px .5px .5px;
+}
+code[type='text'] .word {
+  padding: 0 3px;
+  margin: 0 -3px;
+  border-radius: 4px;
+  border-bottom: transparent 2px solid;
+}
+code[type='text'] .word.noun {
+  background: #EFEFFF;
+  background: rgba(239, 239, 255, .5);
+  text-shadow: #fff .5px 1px 0;
+}
+code[type='text'] .word.verb {
+  border-color: #fcc;
+}
+.tine-show-tips code[type='text']:before {
+  content: attr(lang);
+}
+code[type='comment'] {
+  font-weight: bold;
+  color: #bcd;
+}
+code[type='link'] a {
+  color: #55f;
+  text-decoration: underline;
+}
+code[type='link'] a:hover {
+  padding: 0 3px;
+  margin: 0 -3px;
+  border-radius: 4px;
+  border-bottom: transparent 2px solid;
+  background: #55f;
+  color: #fff;
+  -webkit-transition: color 150ms ease;
+  transition: color 150ms ease;
+}
+code[type='todo'] .todo-checkbox {
+  pointer-events: initial;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  display: inline-block;
+  position: absolute;
+  border-radius: 4px 0 0 4px;
+  left: 34px;
+}
+code[type='todo'] .todo-checkbox:after {
+  content: "";
+  background-color: #eee;
+  width: inherit;
+  height: inherit;
+  display: inline-block;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+code[type='todo'] .todo-checkbox:checked:after {
+  content: "✔";
+}
+code[type='todo'] .notdone {
+  text-decoration: line-through;
+}
+code[type='todo'] .check {
+  font-weight: bold;
+}
+code[type='tasks'] .task {
+  height: 21px;
+  background: #EEAA00;
+  background: rgba(238, 170, 0, 0.1);
+  position: absolute;
+  border: 1px solid #ea0;
+  border-right-width: 10px;
+  border-radius: 3px 0 0 3px;
+  left: 5px;
+  right: 5px;
+  opacity: .25;
+}
+code[type='tasks'] .global-progress {
+  right: 100%;
+  bottom: 0;
+  padding-right: 5px;
+  width: initial;
+  font-size: 80%;
+  color: #ea0;
+}
+code[type='form'] .question {
+  font-weight: bold;
+}
+code[type='form'] .mandatory {
+  color: red;
+}
+code[type='form'] .form > label {
+  display: block;
+}
+code[type='calc'] {
+  color: #5c5;
+}
+code[type='calc']:after {
+  color: transparent;
+}
+code[type='calc'] .variable {
+  color: #46B8ED;
+}
+code[type='calc'] .result {
+  position: absolute;
+  right: 5px;
+  display: inline-block;
+  line-height: initial;
+  background: #efe;
+  padding: 2px 10px;
+  margin: 2px 0;
+  border-radius: 5px;
+  max-width: 30%;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+}
+code[type='calc'] .result:hover {
+  max-width: 100%;
+  cursor: pointer;
+  background: #5c5;
+  color: #efe;
+}
+code[type='table'] {
+  color: #cc5;
+}
+code[type='table'] table {
+  background: #FFFFCC;
+  background: rgba(255,255,204,.5);
+  margin: 0 -5px;
+  padding: 0 5px;
+  border-spacing: 0;
+  border-radius: 2px;
+  box-shadow: #cc5 .25px .25px 2px;
+}
+code[type='table'] table th, code[type='table'] table td {
+  padding: 0;
+}
+code[type='table'] table th {
+  border-bottom: 1px solid #cc5;
+  line-height: 23px;
+  /* -1 */
+}
+
+/* Handle tips */
+
+/* Hide tips for some formats */
+.tine-show-tips code[class$='language-comment']:before, .tine-show-tips code[class$='language-separator']:before {
+  opacity: 0;
+}
+
+.tine-show-tips code[class$='language-comment'] {
+  border-color: transparent;
+}
+
+.tine-show-tips code[class$='language-comment']:before {
+  background: transparent;
+  color: transparent;
+}
+.tine-show-tips code[class$='language-separator'] {
+  border-color: transparent;
+}
+.tine-show-tips code[class$='language-separator']:before {
+  background: transparent;
+  color: transparent;
+}
+.tine-show-tips code[class$='language-text'] {
+  border-color: #555;
+}
+.tine-show-tips code[class$='language-text']:before {
+  background: #555;
+  color: #fff;
+}
+.tine-show-tips code[class$='language-link'] {
+  border-color: #55f;
+}
+.tine-show-tips code[class$='language-link']:before {
+  background: #55f;
+  color: #fff;
+}
+.tine-show-tips code[class$='language-list'] {
+  border-color: #fcc;
+}
+.tine-show-tips code[class$='language-list']:before {
+  background: #fcc;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-form'] {
+  border-color: #abf;
+}
+.tine-show-tips code[class$='language-form']:before {
+  background: #abf;
+  color: #fff;
+}
+.tine-show-tips code[class$='language-table'] {
+  border-color: #cc5;
+}
+.tine-show-tips code[class$='language-table']:before {
+  background: #cc5;
+  color: #fff;
+}
+.tine-show-tips code[class$='language-calc'] {
+  border-color: #5c5;
+}
+.tine-show-tips code[class$='language-calc']:before {
+  background: #5c5;
+  color: #fff;
+}
+.tine-show-tips code[class$='language-todo'] {
+  border-color: #c55;
+}
+.tine-show-tips code[class$='language-todo']:before {
+  background: #c55;
+  color: #fff;
+}
+.tine-show-tips code[class$='language-tasks'] {
+  border-color: #ea0;
+}
+.tine-show-tips code[class$='language-tasks']:before {
+  background: #ea0;
+  color: #fff;
+}
+.tine-show-tips code[class$='language-abc'] {
+  border-color: #ccd;
+}
+.tine-show-tips code[class$='language-abc']:before {
+  background: #ccd;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-md'] {
+  border-color: #333;
+}
+.tine-show-tips code[class$='language-md']:before {
+  background: #333;
+  color: #fff;
+}
+.tine-show-tips code[class$='language-markdown'] {
+  border-color: #333;
+}
+.tine-show-tips code[class$='language-markdown']:before {
+  background: #333;
+  color: #fff;
+}
+.tine-show-tips code[class$='language-html'] {
+  border-color: #fba;
+}
+.tine-show-tips code[class$='language-html']:before {
+  background: #fba;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-css'] {
+  border-color: #cbd;
+}
+.tine-show-tips code[class$='language-css']:before {
+  background: #cbd;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-javascript'] {
+  border-color: #ffc;
+}
+.tine-show-tips code[class$='language-javascript']:before {
+  background: #ffc;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-js'] {
+  border-color: #ffc;
+}
+.tine-show-tips code[class$='language-js']:before {
+  background: #ffc;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-es5'] {
+  border-color: #ffc;
+}
+.tine-show-tips code[class$='language-es5']:before {
+  background: #ffc;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-es6'] {
+  border-color: #ffc;
+}
+.tine-show-tips code[class$='language-es6']:before {
+  background: #ffc;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-es7'] {
+  border-color: #ffc;
+}
+.tine-show-tips code[class$='language-es7']:before {
+  background: #ffc;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-typescript'] {
+  border-color: #ffc;
+}
+.tine-show-tips code[class$='language-typescript']:before {
+  background: #ffc;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-ruby'] {
+  border-color: #e77;
+}
+.tine-show-tips code[class$='language-ruby']:before {
+  background: #e77;
+  color: #fff;
+}
+.tine-show-tips code[class$='language-php'] {
+  border-color: #bbd;
+}
+.tine-show-tips code[class$='language-php']:before {
+  background: #bbd;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-bash'] {
+  border-color: #cfa;
+}
+.tine-show-tips code[class$='language-bash']:before {
+  background: #cfa;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-c'] {
+  border-color: #ccc;
+}
+.tine-show-tips code[class$='language-c']:before {
+  background: #ccc;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-cpp'] {
+  border-color: #fbc;
+}
+.tine-show-tips code[class$='language-cpp']:before {
+  background: #fbc;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-python'] {
+  border-color: #bde;
+}
+.tine-show-tips code[class$='language-python']:before {
+  background: #bde;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-py'] {
+  border-color: #bde;
+}
+.tine-show-tips code[class$='language-py']:before {
+  background: #bde;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-java'] {
+  border-color: #fc9;
+}
+.tine-show-tips code[class$='language-java']:before {
+  background: #fc9;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-coffee'] {
+  border-color: #9be;
+}
+.tine-show-tips code[class$='language-coffee']:before {
+  background: #9be;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-coffeescript'] {
+  border-color: #9be;
+}
+.tine-show-tips code[class$='language-coffeescript']:before {
+  background: #9be;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-rust'] {
+  border-color: #fdc;
+}
+.tine-show-tips code[class$='language-rust']:before {
+  background: #fdc;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-julia'] {
+  border-color: #dbd;
+}
+.tine-show-tips code[class$='language-julia']:before {
+  background: #dbd;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-sql'] {
+  border-color: #bde;
+}
+.tine-show-tips code[class$='language-sql']:before {
+  background: #bde;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-objc'] {
+  border-color: #cdf;
+}
+.tine-show-tips code[class$='language-objc']:before {
+  background: #cdf;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-objectivec'] {
+  border-color: #cdf;
+}
+.tine-show-tips code[class$='language-objectivec']:before {
+  background: #cdf;
+  color: rgba($color, .9);
+}
+.tine-show-tips code[class$='language-latex'] {
+  border-color: #690;
+}
+.tine-show-tips code[class$='language-latex']:before {
+  background: #690;
+  color: #fff;
+}
+
+.tine-show-tips code[type="abc"]:before {
+  content: "♫";
+}
+.tine-show-tips code[type="md"]:before, .tine-show-tips code[type="markdown"]:before {
+  content: "M⬇";
+}
+
+/* right-to-left languages */
+/*code[lang="arb"],
+code[lang="urd"],
+code[lang="skr"],
+code[lang="uig"],
+code[lang="pes"],
+code[lang="heb"],
+code[lang="ydd"] {
+  direction: rtl !important;
+  text-align: right !important;
+}*/
+.tine-code-valid, .tine-code-invalid {
+  display: inline-block;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  right: 5px;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+}
+.tine-code-invalid {
+  background: #FF0000;
+  background: rgba(255,0,0,.5);
+}
+.tine-code-invalid:before {
+  content: "!";
+}
+.tine-code-valid {
+  background: #00FF00;
+  background: rgba(0,255,0,.5);
+}
+.tine-code-valid:before {
+  content: "✔";
+}
+.tine-bot-instructions {
+  position: absolute;
+  color: #ccc;
+}
+.tine-bot-instructions:before {
+  content: "# ";
+}
+
+hr { /* separator */
+  height: 2px;
+  background: #eee;
+  border: 0;
+  margin: 11px 0;
+}
