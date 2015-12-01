@@ -1,28 +1,28 @@
 @font-face {
   font-family: 'Hack';
-  src: url('../assets/fonts/hack-regular-webfont.eot?v=2.010');
-  src: url('../assets/fonts/hack-regular-webfont.eot?#iefix&v=2.010') format('embedded-opentype'), url('../assets/fonts/hack-regular-webfont.woff2?v=2.010') format('woff2'), url('../assets/fonts/hack-regular-webfont.woff?v=2.010') format('woff'), url('../assets/fonts/hack-regular-webfont.ttf?v=2.010') format('truetype'), url('../assets/fonts/hack-regular-webfont.svg?v=2.010#hackregular') format('svg');
+  src: url('../assets/fonts/hack-regular-webfont.eot?v=2.018');
+  src: url('../assets/fonts/hack-regular-webfont.eot?#iefix&v=2.018') format('embedded-opentype'), url('../assets/fonts/hack-regular-webfont.woff2?v=2.018') format('woff2'), url('../assets/fonts/hack-regular-webfont.woff?v=2.018') format('woff'), url('../assets/fonts/hack-regular-webfont.ttf?v=2.018') format('truetype'), url('../assets/fonts/hack-regular-webfont.svg?v=2.018#hackregular') format('svg');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Hack';
-  src: url('../assets/fonts/hack-bold-webfont.eot?v=2.010');
-  src: url('../assets/fonts/hack-bold-webfont.eot?#iefix&v=2.010') format('embedded-opentype'), url('../assets/fonts/hack-bold-webfont.woff2?v=2.010') format('woff2'), url('../assets/fonts/hack-bold-webfont.woff?v=2.010') format('woff'), url('../assets/fonts/hack-bold-webfont.ttf?v=2.010') format('truetype'), url('../assets/fonts/hack-bold-webfont.svg?v=2.010#hackbold') format('svg');
+  src: url('../assets/fonts/hack-bold-webfont.eot?v=2.018');
+  src: url('../assets/fonts/hack-bold-webfont.eot?#iefix&v=2.018') format('embedded-opentype'), url('../assets/fonts/hack-bold-webfont.woff2?v=2.018') format('woff2'), url('../assets/fonts/hack-bold-webfont.woff?v=2.018') format('woff'), url('../assets/fonts/hack-bold-webfont.ttf?v=2.018') format('truetype'), url('../assets/fonts/hack-bold-webfont.svg?v=2.018#hackbold') format('svg');
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: 'Hack';
-  src: url('../assets/fonts/hack-regularoblique-webfont.eot?v=2.010');
-  src: url('../assets/fonts/hack-regularoblique-webfont.eot?#iefix&v=2.010') format('embedded-opentype'), url('../assets/fonts/hack-regularoblique-webfont.woff2?v=2.010') format('woff2'), url('../assets/fonts/hack-regularoblique-webfont.woff?v=2.010') format('woff'), url('../assets/fonts/hack-regularoblique-webfont.ttf?v=2.010') format('truetype'), url('../assets/fonts/hack-regularoblique-webfont.svg?v=2.010#hackregularoblique') format('svg');
+  src: url('../assets/fonts/hack-italic-webfont.eot?v=2.018');
+  src: url('../assets/fonts/hack-italic-webfont.eot?#iefix&v=2.018') format('embedded-opentype'), url('../assets/fonts/hack-italic-webfont.woff2?v=2.018') format('woff2'), url('../assets/fonts/hack-italic-webfont.woff?v=2.018') format('woff'), url('../assets/fonts/hack-italic-webfont.ttf?v=2.018') format('truetype'), url('../assets/fonts/hack-italic-webfont.svg?v=2.018#hackitalic') format('svg');
   font-weight: 400;
   font-style: italic;
 }
 @font-face {
   font-family: 'Hack';
-  src: url('../assets/fonts/hack-boldoblique-webfont.eot?v=2.010');
-  src: url('../assets/fonts/hack-boldoblique-webfont.eot?#iefix&v=2.010') format('embedded-opentype'), url('../assets/fonts/hack-boldoblique-webfont.woff2?v=2.010') format('woff2'), url('../assets/fonts/hack-boldoblique-webfont.woff?v=2.010') format('woff'), url('../assets/fonts/hack-boldoblique-webfont.ttf?v=2.010') format('truetype'), url('../assets/fonts/hack-boldoblique-webfont.svg?v=2.010#hackboldoblique') format('svg');
+  src: url('../assets/fonts/hack-bolditalic-webfont.eot?v=2.018');
+  src: url('../assets/fonts/hack-bolditalic-webfont.eot?#iefix&v=2.018') format('embedded-opentype'), url('../assets/fonts/hack-bolditalic-webfont.woff2?v=2.018') format('woff2'), url('../assets/fonts/hack-bolditalic-webfont.woff?v=2.018') format('woff'), url('../assets/fonts/hack-bolditalic-webfont.ttf?v=2.018') format('truetype'), url('../assets/fonts/hack-bolditalic-webfont.svg?v=2.018#hackbolditalic') format('svg');
   font-weight: 700;
   font-style: italic;
 }
