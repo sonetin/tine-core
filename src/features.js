@@ -611,7 +611,19 @@ var tineCollaboration = {
           path: 'service'
         });
         //Tine.collaboration.peer = Tine.collaboration.peer || new Peer({ key: '982j6usn5c23xr' });
-        Tine.collaboration.peer.on('connection', peerCommunication);
+        Tine.collaboration.peer.on('open', function(id) {
+          console.debug("event", "on", id);
+          document.dispatchEvent(new CustomEvent("now-collaboration-on", { "id": id }));
+        });
+        Tine.collaboration.peer.on('close', function() {
+          console.debug("event", "off");
+          document.dispatchEvent(new CustomEvent("now-collaboration-off"));
+        });
+        Tine.collaboration.peer.on('connection', function (c) {
+          console.debug("event", "connected", c);
+          peerCommunication(c);
+          document.dispatchEvent(new CustomEvent("now-collaboration-connected"));
+        });
       }
     };
     var peerCommunication = function (c) {
@@ -620,13 +632,18 @@ var tineCollaboration = {
         context.editor.value = data.text;
         context.render(false);
         Tine.collaboration.connectedPeers[c.peer] = 1;
+        console.debug("event", "disconnected");
+        document.dispatchEvent(new CustomEvent("now-collaboration-disconnected", { "peerId": c.peer }));
       });
       c.on('close', function () {
         console.log("collaboration:", c.peer + ' left.');
         delete Tine.collaboration.connectedPeers[c.peer];
+        console.debug("event", "connected");
+        document.dispatchEvent(new CustomEvent("now-collaboration-connected", { "peerId": c.peer }));
       });
     };
     Tine.collaboration.share = function () {
+      console.debug("sharing");
       initializePeer.call(context);
     };
     Tine.collaboration.join = function (remoteId) {
@@ -663,11 +680,7 @@ var tineCollaboration = {
   process: function (block, lines, options) {
     if (id = block.match(/^\/tine\s+share\s*/)) {
       // share
-      Tine.collaboration.share(function () {
-        alert("wer");
-        var peerId = Tine.collaboration.peer.id;
-        console.log("pid", peerId);
-      })
+      Tine.collaboration.share()
       return block + "<div class='tine-bot-instructions'>ask your mate to write: \"/tine join " + (Tine.collaboration.peer.id || "<i>[loading id&hellip;]</i>") + "\"</div>";
     } else if (match = block.match(/^\/tine\s+join\s+(\w{16})$/)) {
       // join
