@@ -603,13 +603,14 @@ var tineCollaboration = {
     var initializePeer = function () {
       if (!Tine.collaboration.peer) {
         console.log("collaboration:", "start");
-        /*Tine.collaboration.peer = Tine.collaboration.peer || new Peer({
-          host: 'peerserver.tineapp.com',
-          port: 80,
+        Tine.collaboration.peer = Tine.collaboration.peer || new Peer({
+          host: 'peerserver.sonetin.com',
+          port: 443,
+          secure: true,
           key: 'tineapp-key',
-          path: 'ws'
-        });*/
-        Tine.collaboration.peer = Tine.collaboration.peer || new Peer({ key: '982j6usn5c23xr' });
+          path: 'service'
+        });
+        //Tine.collaboration.peer = Tine.collaboration.peer || new Peer({ key: '982j6usn5c23xr' });
         Tine.collaboration.peer.on('connection', peerCommunication);
       }
     };
