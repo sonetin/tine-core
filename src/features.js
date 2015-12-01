@@ -92,7 +92,7 @@ var tasksDetection = {
       results.push(value);
       return "<div class='task' style='width: " + value + "%'></div>" + line;
     }).join("\n");
-    var total = results.reduce(function(a, b) { return a + b}) / results.length;
+    var total = results.reduce(function (a, b) { return a + b}) / results.length;
     // precision of 1 decimal
     total = Math.round(total * 10) / 10;
     if (results.length > 1) processed += "<div class='tine-absolute-element global-progress'>" + total + "%</div>"
@@ -597,18 +597,60 @@ var tineCollaboration = {
   detect: /^\/tine\s+((share)|(join))\s*/,
   example: "/tine share\n\n/tine join [id]",
   init: function () {
-    this.collaboration = this.collaboration || {};
-    this.collaboration.connectedPeers = {};
+    Tine.collaboration = Tine.collaboration || {};
+    Tine.collaboration.connectedPeers = {};
+    var context = this;
+    var initializePeer = function () {
+      if (!Tine.collaboration.peer) {
+        console.log("collaboration:", "start");
+        /*Tine.collaboration.peer = Tine.collaboration.peer || new Peer({
+          host: 'peerserver.tineapp.com',
+          port: 80,
+          key: 'tineapp-key',
+          path: 'ws'
+        });*/
+        Tine.collaboration.peer = Tine.collaboration.peer || new Peer({ key: '982j6usn5c23xr' });
+        Tine.collaboration.peer.on('connection', peerCommunication);
+      }
+    };
+    var peerCommunication = function (c) {
+      c.on('data', function (data) {
+        console.log("collaboration:", "receiving data:", data.text.length);
+        context.editor.value = data.text;
+        context.render(false);
+        Tine.collaboration.connectedPeers[c.peer] = 1;
+      });
+      c.on('close', function () {
+        console.log("collaboration:", c.peer + ' left.');
+        delete Tine.collaboration.connectedPeers[c.peer];
+      });
+    };
+    Tine.collaboration.share = function () {
+      initializePeer.call(context);
+    };
+    Tine.collaboration.join = function (remoteId) {
+      initializePeer.call(context);
+      if (!Tine.collaboration.connectedPeers[remoteId]) {
+        var c = Tine.collaboration.peer.connect(remoteId, {
+          label: 'chat',
+          metadata: { message: 'hi i want to chat with you!' }
+        });
+        c.on('open', function () {
+          peerCommunication(c);
+        });
+      }
+      //c.on('error', function (err) { alert(err); });
+    };
     // handle text selection
     this.editor.addEventListener("select", function (event) {
       console.log("select", event); }
     );
   },
   onTextChange: function () {
-    if (!this.collaboration.peer) return;
+    if (!Tine.collaboration.peer) return;
     var context = this;
-    for (var c in this.collaboration.peer.connections) {
-      var connection = this.collaboration.peer.connections[c];
+    for (var c in Tine.collaboration.peer.connections) {
+      var connection = Tine.collaboration.peer.connections[c];
       connection.forEach( function (conn) {
         conn.send({
           when: new Date().getTime(),
@@ -618,57 +660,18 @@ var tineCollaboration = {
     }
   },
   process: function (block, lines, options) {
-    var context = this;
-
-    var initializePeer = function () {
-      if (!this.collaboration.peer) {
-        console.log("collaboration:", "start");
-        /*this.collaboration.peer = this.collaboration.peer || new Peer({
-          host: 'peerserver.tineapp.com',
-          port: 80,
-          key: 'tineapp-key',
-          path: 'ws'
-        });*/
-        this.collaboration.peer = this.collaboration.peer || new Peer({ key: '982j6usn5c23xr' });
-        this.collaboration.peer.on('connection', peerCommunication);
-      }
-    };
-    var peerCommunication = function (c) {
-      c.on('data', function(data) {
-        console.log("collaboration:", "receiving data:", data.text.length);
-        context.editor.value = data.text;
-        context.render(false);
-        context.collaboration.connectedPeers[c.peer] = 1;
-      });
-      c.on('close', function () {
-        console.log("collaboration:", c.peer + ' left.');
-        delete context.collaboration.connectedPeers[c.peer];
-      });
-    };
-
     if (id = block.match(/^\/tine\s+share\s*/)) {
       // share
-      initializePeer.call(context);
-      var peerId = this.collaboration.peer.id;
-      if (!peerId) {
-        return block + "<div class='tine-bot-instructions'>ask your mate to write: \"/tine join <i>[loading id&hellip;]</i>\"</div>";
-      } else {
-        return block + "<div class='tine-bot-instructions'>ask your mate to write: \"/tine join " + peerId  + "\"</div>";
-      }
+      Tine.collaboration.share(function () {
+        alert("wer");
+        var peerId = Tine.collaboration.peer.id;
+        console.log("pid", peerId);
+      })
+      return block + "<div class='tine-bot-instructions'>ask your mate to write: \"/tine join " + (Tine.collaboration.peer.id || "<i>[loading id&hellip;]</i>") + "\"</div>";
     } else if (match = block.match(/^\/tine\s+join\s+(\w{16})$/)) {
       // join
       var remoteId = match[1];
-      initializePeer.call(context);
-      if (!this.collaboration.connectedPeers[remoteId]) {
-        var c = this.collaboration.peer.connect(remoteId, {
-          label: 'chat',
-          metadata: { message: 'hi i want to chat with you!' }
-        });
-        c.on('open', function () {
-          peerCommunication(c);
-        });
-      }
-      //c.on('error', function(err) { alert(err); });
+      Tine.collaboration.join(remoteId);
       return block + "<div class='tine-bot-instructions'>connecting to: " + remoteId + "...</div>";
     } else if (block.match(/^\/tine\s+join\s*/)) {
       // join syntax
