@@ -3,9 +3,9 @@
  * @namespace tine
  * @version 0.0.1
  * @author Arnaud Leymet
- * @copyright 2015 Arnaud Leymet. All rights reserved.
- * @license All rights reserved.
- * @see https://github.com/tineapp/tine/blob/master/LICENSE.md
+ * @copyright 2015 SONETIN SAS
+ * @license MIT
+ * @see https://github.com/sonetin/tine-core/blob/master/License.txt
  */
 
 
